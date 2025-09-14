@@ -1,0 +1,123 @@
+// -*- mode: jsonc -*-
+{
+    // "layer": "top", // Waybar at top layer
+    // "position": "bottom", // Waybar position (top|bottom|left|right)
+    "height": 30, // Waybar height (to be removed for auto height)
+    // "width": 1280, // Waybar width
+    "spacing": 4, // Gaps between modules (4px)
+    // Choose the order of the modules
+    "modules-left": [
+    	"custom/os",
+        "clock",
+        "tray",
+        "custom/pacman"
+    ],
+    "modules-center": [
+        "hyprland/workspaces"
+    ],
+    "modules-right": [
+        "pulseaudio",
+        "network",
+        "cpu",
+        "memory",
+        "temperature",
+        "battery#bat0",
+        "battery#bat1",
+    ],
+    "hyprland/workspaces": {
+    	"format": "{icon}",
+    	"format-icons": {
+    		"active": "",
+    		"default": "",
+    		"empty": ""
+    	},
+    	"persistent-workspaces": {
+    		"*": [ 1,2,3,4,5 ]
+    	}
+    },
+    "custom/pacman": {
+    	"format": "󰅢  {}",
+        "interval": 30,   
+        "exec": "echo $(( $(pacman -Qu | wc -l) + $(paru -Qua | wc -l) ))",
+        "exec-if": "exit 0",
+        "on-click": "kitty --title 'update-menu' --override confirm_os_window_close=0 sh -c 'paru -Syu; echo Done - Press enter to exit; read'; pkill -SIGRTMIN+8 waybar",
+        "signal": 8,
+        "tooltip": false,
+	},
+    "custom/os":{
+    	"format": " 󰣇 "
+    },
+    "tray": {
+        // "icon-size": 21,
+        "spacing": 10
+    },
+    "clock": {
+        // "timezone": "Europe/Paris",
+        "tooltip-format": "{:%Y %B}",
+        "format-alt": "{:%a %d %b %R}"
+    },
+    "cpu": {
+        "format": "{usage}% ",
+        "tooltip": false
+    },
+    "memory": {
+        "format": "{}%  "
+    },
+    "temperature": {
+        // "thermal-zone": 2,
+        // "hwmon-path": "/sys/class/hwmon/hwmon2/temp1_input",
+        "critical-threshold": 80,
+        // "format-critical": "{temperatureC}°C {icon}",
+        "format": "{temperatureC}°C {icon}",
+        "format-icons": ["", "", ""]
+    },
+    "battery#bat0": {
+        "bat": "BAT0",
+        "states": {
+            "good": 95,
+            "warning": 30,
+            "critical": 15
+        },
+        "format": "{capacity}% {icon}",
+        "format-full": "{capacity}%  ",
+        "format-charging": "{capacity}% 󰂄",
+        "format-plugged": "{capacity}% ",
+        "format-alt": "{time} {icon}",
+        "format-icons": [" ", " ", " ", " ", " "]
+    },
+    
+    "battery#bat1": {
+        "bat": "BAT1",
+        "states": {
+            "good": 95,
+            "warning": 30,
+            "critical": 15
+        },
+        "format": "{capacity}% {icon}",
+        "format-full": "{capacity}%  ",
+        "format-charging": "{capacity}% 󰂄",
+        "format-plugged": "{capacity}% ",
+        "format-alt": "{time} {icon}",
+        "format-icons": [" ", " ", " ", " ", " "]
+    },
+    
+    "network": {
+        "format-wifi": " ",
+        "format-ethernet":"󰈀 ",
+        "format-disconnected": " ",
+        "tooltip-format-disconnected": "Error",
+        "tooltip-format-wifi": "{essid} ({signalStrength}%)  ",
+        "tooltip-format-ethernet": "{ifname} 🖧 ",
+        "format-alt": "{essid} ({signalStrength}%)  "
+    },
+    "pulseaudio": {
+        "format": "{volume}% {icon} {format_source}",
+        "format-muted": " {format_source}",
+        "format-source": "{volume}% ",
+        "format-source-muted": " ",
+        "format-icons": {
+            "default": ["", " ", " "]
+        },
+        "on-click": "pavucontrol"
+    }
+}

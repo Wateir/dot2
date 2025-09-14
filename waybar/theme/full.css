@@ -1,0 +1,130 @@
+* {
+    font-size: 15px;
+    font-family: "JetBrainsMono Nerd Font", "JetbrainsMono NF";
+}
+
+/* Main Waybar window */
+window#waybar {
+    all: unset;
+    background: #302d30;
+    color: #ffffff;
+    padding: 5px 10px;
+    border-radius: 0px;
+    box-shadow: 0px 0px 4px rgba(0, 0, 0, 0.5);
+}
+
+/* Left, center, and right modules fill their space without extra backgrounds */
+.modules-left,
+.modules-center,
+.modules-right {
+    padding: 0;
+    margin: 0;
+    background: transparent;
+    box-shadow: none;
+}
+
+/* Tooltip (optional tweak) */
+tooltip {
+    background: #302d30;
+    color: #ffffff;
+}
+
+/* === Modules styling (no changes unless needed visually) === */
+
+#clock {
+    padding: 0px 5px;
+    color: #5fd1fa;
+    font-weight: bold;
+    transition: all .3s ease;
+}
+
+#custom-pacman,
+#network,
+#battery,
+#cpu,
+#memory,
+#temperature,
+#group-expand,
+#custom-expand,
+#custom-colorpicker,
+#tray {
+    padding: 0px 5px;
+    transition: all .3s ease;
+    color: @color7;
+}
+
+#battery.charging {
+    color: #26A65B;
+}
+
+#battery.warning:not(.charging) {
+    color: #ffbe61;
+}
+
+#battery.critical:not(.charging) {
+    color: #f53c3c;
+    animation-name: blink;
+    animation-duration: 0.5s;
+    animation-timing-function: linear;
+    animation-iteration-count: infinite;
+    animation-direction: alternate;
+}
+
+#pulseaudio.muted {
+    color: #FF0000;
+    padding-top: 0;
+}
+
+#custom-expand {
+    color: rgba(255, 255, 255, 0.2);
+    text-shadow: 0px 0px 2px rgba(0, 0, 0, .7);
+}
+#custom-expand:hover {
+    color: rgba(255, 255, 255, 0.4);
+    text-shadow: 0px 0px 2px rgba(255, 255, 255, .5);
+}
+
+/* Workspace Buttons */
+#workspaces {
+    color: #cacecd;
+    padding: 0px 5px;
+}
+#workspaces button {
+    all: unset;
+    padding: 0px 5px;
+    color: #cacecd;
+    transition: all 0.2s ease;
+}
+#workspaces button:hover {
+    color: rgba(0,0,0,0);
+    text-shadow: 0px 0px 1.5px rgba(0, 0, 0, .5);
+}
+#workspaces button.active {
+    color: @color9;
+    text-shadow: 0px 0px 2px rgba(0, 0, 0, .5);
+}
+#workspaces button.empty {
+    color: rgba(0,0,0,0);
+    text-shadow: 0px 0px 1.5px rgba(0, 0, 0, .2);
+}
+#workspaces button.empty:hover {
+    color: rgba(0,0,0,0);
+    text-shadow: 0px 0px 1.5px rgba(0, 0, 0, .5);
+}
+#workspaces button.empty.active {
+    color: @color9;
+    text-shadow: 0px 0px 2px rgba(0, 0, 0, .5);
+}
+
+/* Tray menu items */
+#tray menu *,
+#tray menu separator {
+    padding: 0px 5px;
+    transition: all .3s ease;
+}
+
+/* Optional endpoint styling */
+#custom-endpoint {
+    color: transparent;
+    text-shadow: 0px 0px 1.5px rgba(0, 0, 0, 1);
+}
