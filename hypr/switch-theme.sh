@@ -7,6 +7,7 @@ HYPR_FILE="$HOME/.config/hypr/hyprland.conf"
 if grep -q 'theme/aero.css' "$STYLE_FILE"; then
     # Switch to full.css
     sed -i 's#theme/aero.css#theme/full.css#' "$STYLE_FILE"
+    pkill -SIGUSR2 waybar
     sed -i 's/aero.conf/full.conf/' "$HYPR_FILE"
 	sleep 0.5
 	hyprctl hyprpaper reload , $HOME/Downloads/wallpaper-full.png
@@ -17,9 +18,7 @@ else
     hyprctl hyprpaper reload , $HOME/Downloads/wallpaper.jpg
     sleep 0.5
     sed -i 's#theme/full.css#theme/aero.css#' "$STYLE_FILE"
+    pkill -SIGUSR2 waybar
     sed -i 's/full.conf/aero.conf/' "$HYPR_FILE"
     echo "Switched to aero theme"
 fi
-
-# Optionally reload Waybar
-pkill -SIGUSR2 waybar
