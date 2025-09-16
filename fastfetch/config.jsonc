@@ -14,7 +14,7 @@
     	"break",
         {
             "type": "custom",
-            "color": "yellow",
+            "color": "green",
             "format": "\u001b[32m┌──────────────────Hardware──────────────────┐"
         },
         {
@@ -38,13 +38,12 @@
         {
             "type": "memory",
             "key": "  ├ ",
-            "format": "{size-used} / {size-total} {?name}({name}){?}",
             "keyColor": "magenta"
         },
         {
             "type": "disk",
             "key": "  ├ ",
-            "format": "{size-used} / {size-total} {?name}({name}){?}",
+            "format": "{mountpoint}: {size-used} / {size-total}",
             "keyColor": "magenta"
         },
         {
